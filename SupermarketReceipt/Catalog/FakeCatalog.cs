@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace SupermarketReceipt
+﻿namespace SupermarketReceipt
 {
     public class FakeCatalog : SupermarketCatalog
     {
