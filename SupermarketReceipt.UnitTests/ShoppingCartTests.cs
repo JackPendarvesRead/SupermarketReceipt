@@ -79,21 +79,6 @@ namespace SupermarketReceipt.UnitTests
             productQuantity.Quantity.ShouldBe(quantity + 1);
         }
 
-        [Fact(Skip = "There currently is no robust way to access the private members to test the outcome of these tests")]
-        public void HandleOffers_AppliesSpecialOffersCorrectly()
-        {
-            // Arrange
-            var receipt = new Receipt();
-            var offers = new Dictionary<Product, Offer>();
-            var mockCatalog = new Mock<SupermarketCatalog>();
-            var cart = GetUnderTest();
-
-            // Act
-            cart.HandleOffers(receipt, offers, mockCatalog.Object);
-
-            // Assert
-        }
-
         private static ShoppingCart GetUnderTest()
         {
             return new ShoppingCart();

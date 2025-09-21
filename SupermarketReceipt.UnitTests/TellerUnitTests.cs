@@ -41,7 +41,7 @@ namespace SupermarketReceipt.UnitTests
             var product1 = new Product("Bread", ProductUnit.Each);
             var product2 = new Product("Butter", ProductUnit.Each);
 
-            var mockCatalog = new Mock<SupermarketCatalog>();
+            var mockCatalog = new Mock<ISupermarketCatalog>();
             mockCatalog.Setup(c => c.GetUnitPrice(product1)).Returns(product1Price);
             mockCatalog.Setup(c => c.GetUnitPrice(product2)).Returns(product2Price);
 
