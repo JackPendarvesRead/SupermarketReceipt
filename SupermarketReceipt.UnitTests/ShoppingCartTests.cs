@@ -11,7 +11,7 @@ namespace SupermarketReceipt.UnitTests
     public class ShoppingCartTests
     {
         [Fact(Skip = "There currently is no robust way to access the private members to test the outcome of these tests")]
-        public void AddItem_AddsOneItemToCart()
+        public void AddItem_AddsOneItemToCart_WhenUsingDefaultQuantity()
         {
             // Arrange
             var product = new Product("Apple", ProductUnit.Each);
@@ -24,7 +24,7 @@ namespace SupermarketReceipt.UnitTests
         }
 
         [Fact(Skip = "There currently is no robust way to access the private members to test the outcome of these tests")]
-        public void AddItem_AddsOneItemToCartToExistingItem_WhenItemAlreadyAdded()
+        public void AddItem_AddsOneItemToCartToExistingItem_WhenUsingDefaultQuantityAndItemAlreadyAdded()
         {
             // Arrange
             var product = new Product("Apple", ProductUnit.Each);
@@ -44,14 +44,14 @@ namespace SupermarketReceipt.UnitTests
         [InlineData(1.0)]
         [InlineData(5.0)]
         [InlineData(11.111)]
-        public void AddItemQuantity_AddsSpecifiedQuantity(double quantity)
+        public void AddItem_AddsSpecifiedQuantity(double quantity)
         {
             // Arrange
             var product = new Product("Apple", ProductUnit.Each);
             var cart = GetUnderTest();
 
             // Act
-            cart.AddItemQuantity(product, quantity);
+            cart.AddItem(product, quantity);
 
             // Assert
             var productQuantity = cart.GetItems().ShouldHaveSingleItem();
@@ -63,15 +63,15 @@ namespace SupermarketReceipt.UnitTests
         [InlineData(1.0)]
         [InlineData(5.0)]
         [InlineData(11.111)]
-        public void AddItemQuantity_AddsSpecifiedQuantityToExistingItem_WhenItemAlreadyAdded(double quantity)
+        public void AddItem_AddsSpecifiedQuantityToExistingItem_WhenItemAlreadyAdded(double quantity)
         {
             // Arrange
             var product = new Product("Apple", ProductUnit.Each);
             var cart = GetUnderTest();
 
             // Act
-            cart.AddItemQuantity(product, quantity);
-            cart.AddItemQuantity(product, 1); // needs to be added twice as there is no other way to set this up as code is written
+            cart.AddItem(product, quantity);
+            cart.AddItem(product, 1); // needs to be added twice as there is no other way to set this up as code is written
 
             // Assert
             var productQuantity = cart.GetItems().ShouldHaveSingleItem();

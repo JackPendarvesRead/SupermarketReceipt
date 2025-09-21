@@ -4,24 +4,16 @@ namespace SupermarketReceipt
 {
     public class ShoppingCart
     {
-        private readonly List<ProductQuantity> _items = new List<ProductQuantity>();
         private readonly Dictionary<Product, double> _productQuantities = new Dictionary<Product, double>();
         private static readonly CultureInfo Culture = CultureInfo.CreateSpecificCulture("en-GB");
 
-        public List<ProductQuantity> GetItems()
+        public IEnumerable<(Product Product, double Quantity)> GetItems()
         {
-            return new List<ProductQuantity>(_items);
+            return _productQuantities.Select(x => (x.Key, x.Value));
         }
 
-        public void AddItem(Product product)
+        public void AddItem(Product product, double quantity = 1.0)
         {
-            AddItemQuantity(product, 1.0);
-        }
-
-
-        public void AddItemQuantity(Product product, double quantity)
-        {
-            _items.Add(new ProductQuantity(product, quantity));
             if (_productQuantities.ContainsKey(product))
             {
                 var newAmount = _productQuantities[product] + quantity;

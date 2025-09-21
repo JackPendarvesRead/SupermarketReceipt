@@ -46,8 +46,8 @@ namespace SupermarketReceipt.UnitTests
             mockCatalog.Setup(c => c.GetUnitPrice(product2)).Returns(product2Price);
 
             var cart = new ShoppingCart();
-            cart.AddItemQuantity(product1, product1Quantity);
-            cart.AddItemQuantity(product2, product2Quantity);
+            cart.AddItem(product1, product1Quantity);
+            cart.AddItem(product2, product2Quantity);
 
             var expectedReceipts = new List<ReceiptItem>
             {
