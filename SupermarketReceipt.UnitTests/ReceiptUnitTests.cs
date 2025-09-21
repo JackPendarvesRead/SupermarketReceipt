@@ -19,8 +19,8 @@ namespace SupermarketReceipt.UnitTests
             var receipt = GetUnderTest();
 
             // Act
-            receipt.AddProduct(product1, 1.0, 5.0, 5.0);
-            receipt.AddProduct(product2, 2.0, 1.0, 2.0);
+            receipt.AddProduct(product1, 1.0, 5.0);
+            receipt.AddProduct(product2, 2.0, 1.0);
             var result = receipt.GetTotalPrice(); // This is horrible but working with current code structure
 
             // Assert
@@ -36,7 +36,7 @@ namespace SupermarketReceipt.UnitTests
             var receipt = GetUnderTest();
 
             // Act
-            receipt.AddProduct(product, 1.0, 5.0, 5.0);
+            receipt.AddProduct(product, 1.0, 5.0);
 
             // Assert
             var items = receipt.GetItems(); // This is horrible but working with current code structure
@@ -56,7 +56,7 @@ namespace SupermarketReceipt.UnitTests
             var receipt = GetUnderTest();
 
             // Act
-            receipt.AddProduct(product, 1.0, 5.0, 5.0);
+            receipt.AddProduct(product, 1.0, 5.0);
 
             // Assert
             var items = receipt.GetItems(); // This is horrible but working with current code structure

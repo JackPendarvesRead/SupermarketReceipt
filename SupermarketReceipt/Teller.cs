@@ -25,11 +25,10 @@ namespace SupermarketReceipt
             var productQuantities = theCart.GetItems();
             foreach (var pq in productQuantities)
             {
-                var p = pq.Product;
+                var product = pq.Product;
                 var quantity = pq.Quantity;
-                var unitPrice = _catalog.GetUnitPrice(p);
-                var price = quantity * unitPrice;
-                receipt.AddProduct(p, quantity, unitPrice, price);
+                var unitPrice = _catalog.GetUnitPrice(product);
+                receipt.AddProduct(product, quantity, unitPrice);
             }
 
             HandleOffers(receipt, productQuantities);

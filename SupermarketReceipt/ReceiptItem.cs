@@ -2,17 +2,19 @@
 {
     public class ReceiptItem
     {
-        public ReceiptItem(Product p, double quantity, double price, double totalPrice)
+        public ReceiptItem(Product product, double quantity, double price)
         {
-            Product = p;
+            Product = product;
             Quantity = quantity;
             Price = price;
-            TotalPrice = totalPrice;
         }
 
         public Product Product { get; }
+
         public double Price { get; }
-        public double TotalPrice { get; }
+
         public double Quantity { get; }
+
+        public double TotalPrice => Price * Quantity;
     }
 }

@@ -51,8 +51,8 @@ namespace SupermarketReceipt.UnitTests
 
             var expectedReceipts = new List<ReceiptItem>
             {
-                new ReceiptItem(product1, product1Quantity, product1Price, product1TotalPrice),
-                new ReceiptItem(product2, product2Quantity, product2Price, product2TotalPrice)
+                new ReceiptItem(product1, product1Quantity, product1Price),
+                new ReceiptItem(product2, product2Quantity, product2Price)
             };
 
             var teller = new Teller(mockCatalog.Object);
