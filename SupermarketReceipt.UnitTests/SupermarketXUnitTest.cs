@@ -25,7 +25,7 @@ namespace SupermarketReceipt.XUnit.Test
             Assert.Equal(4.975, receipt.GetTotalPrice());
             Assert.Equal(new List<Discount>(), receipt.GetDiscounts());
             Assert.Single(receipt.GetItems());
-            var receiptItem = receipt.GetItems()[0];
+            var receiptItem = receipt.GetItems().ToArray()[0];
             Assert.Equal(apples, receiptItem.Product);
             Assert.Equal(1.99, receiptItem.Price);
             Assert.Equal(2.5 * 1.99, receiptItem.TotalPrice);
