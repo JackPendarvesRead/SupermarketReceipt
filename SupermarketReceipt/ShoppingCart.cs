@@ -6,9 +6,9 @@ namespace SupermarketReceipt
     {
         private readonly Dictionary<Product, double> _productQuantities = new Dictionary<Product, double>();
 
-        public IEnumerable<(Product Product, double Quantity)> GetItems()
+        public IEnumerable<ProductQuantity> GetItems()
         {
-            return _productQuantities.Select(x => (x.Key, x.Value));
+            return _productQuantities.Select(x => new ProductQuantity(x.Key, x.Value));
         }
 
         public void AddItem(Product product, double quantity = 1.0)

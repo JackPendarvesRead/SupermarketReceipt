@@ -37,12 +37,12 @@ namespace SupermarketReceipt
             return receipt;
         }
 
-        private void HandleOffers(Receipt receipt, IEnumerable<(Product product, double quantity)> productQuantityPairs)
+        private void HandleOffers(Receipt receipt, IEnumerable<ProductQuantity> productQuantities)
         {
-            foreach (var pair in productQuantityPairs)
+            foreach (var productQuantity in productQuantities)
             {
-                var quantity = pair.quantity;
-                var product = pair.product;
+                var quantity = productQuantity.Quantity;
+                var product = productQuantity.Product;
 
                 var quantityAsInt = (int)quantity;
                 if (_offers.ContainsKey(product))
