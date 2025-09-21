@@ -10,7 +10,9 @@
         }
 
         public string Description { get; }
+
         public double DiscountAmount { get; }
+
         public Product Product { get; }
     }
 }

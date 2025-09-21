@@ -24,7 +24,7 @@
 
         public void EmptyCart()
         {
-            throw new NotImplementedException("Not implemented but I have a feeling this will be needed.");
+            _productQuantities.Clear();
         }
     }
 }
