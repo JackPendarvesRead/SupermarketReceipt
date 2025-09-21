@@ -1,8 +1,6 @@
-﻿using System.Globalization;
-
-namespace SupermarketReceipt
+﻿namespace SupermarketReceipt
 {
-    public class ShoppingCart
+    public class ShoppingCart : IShoppingCart
     {
         private readonly Dictionary<Product, double> _productQuantities = new Dictionary<Product, double>();
 
@@ -22,6 +20,11 @@ namespace SupermarketReceipt
             {
                 _productQuantities.Add(product, quantity);
             }
+        }
+
+        public void EmptyCart()
+        {
+            throw new NotImplementedException("Not implemented but I have a feeling this will be needed.");
         }
     }
 }

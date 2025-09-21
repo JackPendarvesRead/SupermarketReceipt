@@ -15,11 +15,11 @@ namespace SupermarketReceipt.XUnit.Test
             var cart = new ShoppingCart();
             cart.AddItem(apples, 2.5);
 
-            var teller = new Teller(catalog);
+            var teller = new Teller(catalog, cart);
             teller.AddSpecialOffer(SpecialOfferType.TenPercentDiscount, toothbrush, 10.0);
 
             // ACT
-            var receipt = teller.ChecksOutArticlesFrom(cart);
+            var receipt = teller.ChecksOutArticlesFrom();
 
             // ASSERT
             Assert.Equal(4.975, receipt.GetTotalPrice());

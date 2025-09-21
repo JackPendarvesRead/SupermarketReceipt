@@ -6,12 +6,17 @@ namespace SupermarketReceipt
     public class Teller
     {
         private readonly ISupermarketCatalog _catalog;
+        private readonly IShoppingCart _cart;
+
         private readonly Dictionary<Product, Offer> _offers = new Dictionary<Product, Offer>();
         private static readonly CultureInfo Culture = CultureInfo.CreateSpecificCulture("en-GB");
 
-        public Teller(ISupermarketCatalog catalog)
+        public Teller(
+            ISupermarketCatalog catalog,
+            IShoppingCart cart)
         {
             _catalog = catalog;
+            _cart = cart;
         }
 
         public void AddSpecialOffer(SpecialOfferType offerType, Product product, double argument)
@@ -19,10 +24,10 @@ namespace SupermarketReceipt
             _offers[product] = new Offer(offerType, argument);
         }
 
-        public Receipt ChecksOutArticlesFrom(ShoppingCart theCart)
+        public Receipt ChecksOutArticlesFrom()
         {
             var receipt = new Receipt();
-            var productQuantities = theCart.GetItems();
+            var productQuantities = _cart.GetItems();
             foreach (var pq in productQuantities)
             {
                 var product = pq.Product;

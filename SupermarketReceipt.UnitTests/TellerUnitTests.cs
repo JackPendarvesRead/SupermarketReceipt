@@ -15,7 +15,9 @@ namespace SupermarketReceipt.UnitTests
         public void AddSpecialOffer_ShouldAddSpecialOfferToDictionary_WhenProvidedOfferDetails()
         {
             // Arrange
-            var teller = new Teller(new FakeCatalog());
+            var mockCatalog = new Mock<ISupermarketCatalog>();
+            var mockCart = new Mock<IShoppingCart>();
+            var teller = new Teller(mockCatalog.Object, mockCart.Object);
 
             // Act
             teller.AddSpecialOffer(SpecialOfferType.TenPercentDiscount, new Product("Milk", ProductUnit.Each), 10.0);
@@ -45,20 +47,22 @@ namespace SupermarketReceipt.UnitTests
             mockCatalog.Setup(c => c.GetUnitPrice(product1)).Returns(product1Price);
             mockCatalog.Setup(c => c.GetUnitPrice(product2)).Returns(product2Price);
 
-            var cart = new ShoppingCart();
-            cart.AddItem(product1, product1Quantity);
-            cart.AddItem(product2, product2Quantity);
+            var mockCart = new Mock<IShoppingCart>();
+            mockCart.Setup(c => c.GetItems()).Returns(new List<ProductQuantity>
+            {
+                new ProductQuantity(product1, product1Quantity),
+                new ProductQuantity(product2, product2Quantity)
+            });
 
             var expectedReceipts = new List<ReceiptItem>
             {
                 new ReceiptItem(product1, product1Quantity, product1Price),
                 new ReceiptItem(product2, product2Quantity, product2Price)
             };
-
-            var teller = new Teller(mockCatalog.Object);
+            var teller = new Teller(mockCatalog.Object, mockCart.Object);
 
             // Act
-            var receipt = teller.ChecksOutArticlesFrom(cart);
+            var receipt = teller.ChecksOutArticlesFrom();
             
             // Assert
             receipt.GetTotalPrice().ShouldBe(totalPrice);
