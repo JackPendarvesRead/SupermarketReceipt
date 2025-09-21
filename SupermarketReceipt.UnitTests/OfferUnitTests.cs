@@ -13,12 +13,11 @@ namespace SupermarketReceipt.UnitTests
         public void Offer_PropertiesAreSetCorrectly_WhenInitialized()
         {
             // Arrange
-            var product = new Product("Bread", ProductUnit.Each);
             var offerType = SpecialOfferType.TenPercentDiscount;
             var argument = 10.0;
             
             // Act
-            var offer = new Offer(offerType, product, argument);
+            var offer = new Offer(offerType, argument);
             
             // Assert
             offer.OfferType.ShouldBe(offerType);
